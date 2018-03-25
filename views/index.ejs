@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Actor Grapher</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href='/public/stylesheets/style.css' />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="/public/javascripts/autoComplete.js"></script>
+    </head>
+    <body class="bg-light">
+    <div class="container-fluid">
+        <div class="jumbotron bg-dark text-light">
+            <h1 class="text-center">Welcome to Actor Grapher</h1>
+            <p class="text-center">See how your favorite actors/actresses/directors stack up on Rotten Tomatoes!</p>
+        </div>
+        <br>
+        <div class="container mx-auto" id="form-container">
+            <form action="/" method="POST">
+                <div class="form-group text-center">
+                    <label class="font-weight-bold" for="actorName">Actor/Director Name: </label>
+                    <input type="text" class="form-control" name="actorName" id="actorName" placeholder="e.g. Brad Pitt">
+                    <small id="actorHelp" class="form-text text-muted my-2">Type the name in as accurately as possible.</small>
+                    <button type="submit my-1" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="sk-circle hidden">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </div>
+    <script>
+        $(document).submit(function(){
+            $(".sk-circle").removeClass("hidden");
+        });
+    </script>
+    </body>
+</html>
