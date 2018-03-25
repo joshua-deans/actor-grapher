@@ -8,8 +8,8 @@
 ##### Will be deploying this application once I have solved error handling
 
 Currently working on:
-*Proper error handling, including flash messages upon an error
-*Removing tooltips from the line of best fit
-*Ability to click on any element and be taken to it's associated link
-*Scaling the graph to fit the screen height-wise
-*Adding another mode where the trend can be viewed for films in a given franchise (ie Marvel or Star Wars).
+* Proper error handling, including flash messages upon an error
+* Removing tooltips from the line of best fit
+* Ability to click on any element and be taken to it's associated link
+* Scaling the graph to fit the screen height-wise
+* Adding another mode where the trend can be viewed for films in a given franchise (ie Marvel or Star Wars).
