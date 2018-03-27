@@ -29,8 +29,9 @@ app.post('/', function(req, res){
     externalFunc.getWebData(urls, req, res);
 });
 
-var port = process.env.PORT;
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
-app.listen(port, process.env.IP, function(){
+app.listen(server_port, server_ip_address, function(){
     console.log("The Server has started! on port ");
 });
