@@ -29,9 +29,9 @@ app.post('/', function(req, res){
     externalFunc.getWebData(urls, req, res);
 });
 
-var server_port = process.env.OPENSHIFT_NODEJS_PORT;
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP;
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
-app.listen(server_port, server_ip_address, function(){
+app.listen(port, ip, function(){
     console.log( "Listening on " + server_ip_address + ", port " + server_port )
 });
