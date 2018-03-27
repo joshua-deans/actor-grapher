@@ -1,27 +1,43 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Joshua Deans">
+        <meta name="description" content="Actor Grapher director actress celebrity">
         <title>Actor Grapher</title>
+        <link rel="shortcut icon" type="image/x-icon" href="/public/images/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Roboto|Raleway" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
         <link rel='stylesheet' href='/public/stylesheets/style.css' />
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <% if (error.length > 0){ %>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <% } %>
         <script type="text/javascript" src="/public/javascripts/autoComplete.js"></script>
     </head>
     <body class="bg-light">
     <div class="container-fluid">
-        <div class="jumbotron bg-dark text-light">
+        <div class="jumbotron bg-dark text-light mb-1">
             <h1 class="text-center">Welcome to Actor Grapher</h1>
-            <p class="text-center">See how your favorite actors/actresses/directors stack up on Rotten Tomatoes!</p>
+            <h5 class="text-center">See how your favorite actors/actresses/directors stack up on Rotten Tomatoes!</h5>
         </div>
-        <br>
-        <div class="container mx-auto" id="form-container">
+        <% if (error.length > 0){ %>
+        <div class="alert alert-danger alert-dismissible fade show mt-0" role="alert">
+            <strong>Error!</strong> <%= error[0] %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% } %>
+        <div class="container mx-auto mt-4" id="form-container">
             <form action="/" method="POST">
                 <div class="form-group text-center">
                     <label class="font-weight-bold" for="actorName">Actor/Director Name: </label>
-                    <input type="text" class="form-control" name="actorName" id="actorName" placeholder="e.g. Brad Pitt">
+                    <input type="text" class="form-control" name="actorName" id="actorName" placeholder="e.g. Brad Pitt" required>
                     <small id="actorHelp" class="form-text text-muted my-2">Type the name in as accurately as possible.</small>
                     <button type="submit my-1" class="btn btn-primary">Submit</button>
                 </div>

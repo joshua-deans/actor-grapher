@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Joshua Deans">
+    <meta name="description" content="Actor Grapher director actress celebrity">
     <title>Actor Grapher - <%= actorName %></title>
+    <link rel="shortcut icon" type="image/x-icon" href="/public/images/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Roboto|Raleway" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel='stylesheet' href='/public/stylesheets/style.css' />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
@@ -13,7 +19,7 @@
         <a class="btn btn-warning float-right" href="/">Go Back</a>
     </div>
     <div class="chart-container container-fluid" style="position: relative;">
-        <canvas id="myChart" height="500" width="100"></canvas>
+        <canvas id="myChart" height="480" width="100"></canvas>
     </div>
 </div>
 
@@ -30,10 +36,15 @@
                         y: <%= JSON.stringify(dataArr[i]["y"]) %>,
                         link: <%- JSON.stringify(dataArr[i]["link"]) %>,
                         title: <%- JSON.stringify(dataArr[i]["title"]) %>,
-                        year: <%- JSON.stringify(dataArr[i]["year"]) %>,
+                        year: <%- JSON.stringify(dataArr[i]["year"]) %>
                     },
                     <% } %>
-                ]
+                ],
+                backgroundColor: 'rgb(0, 153, 255)',
+                borderColor: 'rgb(0, 123, 225)',
+                radius: '4',
+                hoverRadius: '6',
+                hitRadius: '1'
             }, {
                 // Changes this dataset to become a line
                 type: 'line',
@@ -58,14 +69,17 @@
                 padding: {
                     left: 0,
                     right: 0,
-                    top: 25,
-                    bottom: 10
+                    top: 15,
+                    bottom: 0
                 }
             },
             tooltips: {
                 mode: 'nearest',
                 xPadding: 6,
                 displayColors: false,
+                filter: function(currentValue, index, arr){
+                    return currentValue.datasetIndex === 0;
+                },
                 callbacks: {
                     beforeLabel: function(tooltipItem, data) {
                         var label = data.datasets[tooltipItem.datasetIndex].label || '';
@@ -98,17 +112,13 @@
                 }
             },
             maintainAspectRatio: false,
-            elements : {
-                point: {
-                    backgroundColor: 'rgb(0, 153, 255)',
-                    borderColor: 'rgb(0, 123, 225)',
-                    radius: '4',
-                    hoverRadius: '5',
-                    hitRadius: '1'
-                }
-            },
             legend: {
                 display: false
+            },
+            elements: {
+                line: {
+                    tension: 0
+                } // disables bezier curves
             },
             scales: {
                 xAxes: [{
@@ -133,6 +143,17 @@
                         labelString: "Percent (%)"
                     }
                 }]
+            },
+            'onClick': function(event, item) {
+                console.log ('legend onClick', event);
+                if(item.length) {
+                    console.log('legd item', item[0]);
+                    console.log('legd index', item[0]._index);
+                    console.log('legd dsindex', item[0]._datasetIndex);
+                    var dataArray = item[0]._chart.tooltip._data.datasets[0].data;
+                    var link = dataArray[item[0]._index].link;
+                    window.open(link);
+                }
             }
         }
     });
