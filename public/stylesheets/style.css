@@ -6,6 +6,13 @@ button {
     margin: auto 0;
 }
 
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 85vh;
+    width: 80vw;
+}
+
 #form-container {
     max-width: 400px;
 }

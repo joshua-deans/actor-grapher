@@ -14,12 +14,12 @@
 </head>
 <body class="bg-light">
 <div class="container-fluid">
-    <div class="container-fluid jumbotron mx-auto bg-dark text-light text-center py-4 mb-1">
+    <div class="container-fluid jumbotron mx-auto bg-dark text-light text-center py-3 mb-1">
         <h2 style="display:inline"><%= actorName %></h2>
-        <a class="btn btn-warning float-right" href="/">Go Back</a>
+        <a class="btn btn-warning btn-sm float-right" href="/">Go Back</a>
     </div>
-    <div class="chart-container container-fluid" style="position: relative;">
-        <canvas id="myChart" height="480" width="100"></canvas>
+    <div class="chart-container container-fluid px-0" style="position: relative;">
+        <canvas id="myChart"></canvas>
     </div>
 </div>
 
@@ -145,11 +145,7 @@
                 }]
             },
             'onClick': function(event, item) {
-                console.log ('legend onClick', event);
                 if(item.length) {
-                    console.log('legd item', item[0]);
-                    console.log('legd index', item[0]._index);
-                    console.log('legd dsindex', item[0]._datasetIndex);
                     var dataArray = item[0]._chart.tooltip._data.datasets[0].data;
                     var link = dataArray[item[0]._index].link;
                     window.open(link);
@@ -158,5 +154,3 @@
         }
     });
 </script>
-</body>
-</html>
