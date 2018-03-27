@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var express = require('express');
+var app     = express();
 var debug = require('debug')('tomato-scraper:server');
 var http = require('http');
 
