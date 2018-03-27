@@ -10,7 +10,7 @@ app.use("/public", express.static(__dirname + "/public"));
 app.use(session({
     secret: "Anything I want",
     resave: false,
-    saveUnitialized: false
+    saveUninitialized: false
 }));
 
 // app.use(methodOverride("_method"));
@@ -29,9 +29,9 @@ app.post('/', function(req, res){
     externalFunc.getWebData(urls, req, res);
 });
 
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+var server_port = process.env.OPENSHIFT_NODEJS_PORT;
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP;
 
 app.listen(server_port, server_ip_address, function(){
-    console.log("The Server has started! on port ");
+    console.log( "Listening on " + server_ip_address + ", port " + server_port )
 });
