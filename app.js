@@ -29,8 +29,8 @@ app.post('/', function(req, res){
     externalFunc.getWebData(urls, req, res);
 });
 
-var port = process.env.PORT || 8888;
+var port = process.env.PORT;
 
 app.listen(port, process.env.IP, function(){
-    console.log("The Server has started! on port " + port);
+    console.log("The Server has started! on port ");
 });
