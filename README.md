@@ -8,7 +8,7 @@ Application: http://actor-grapher-actor-grapher.193b.starter-ca-central-1.opensh
 ##### Actor Grapher is a visualization tool that displays an actor/director’s Rotten Tomatoes ratings for each of his/her movies. The movies are presented graphically, sorted by the release date.  
 ##### The application will be deployed once I have resolved the error handling requirements. 
 
-Features and changes in progress:
+Changes in progress:
 * Error handling functionalities, including error messages
 * Removing tooltips from the line of best fit
 * Scaling the graph to fit the screen height-wise
