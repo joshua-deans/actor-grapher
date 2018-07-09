@@ -1,15 +1,16 @@
 ## Actor Grapher
 
-#### This is the Node.js web version of my previous Python tkinter application.
+#### Actor Grapher is the Node.js web version of my previous Python tkinter application.
+Application: http://actor-grapher-actor-grapher.193b.starter-ca-central-1.openshiftapps.com/
 
 ---
 
-##### The Actor Grapher is a visualization tool that graphs the overall Rotten Tomatoes score of a given actor/actress or director. 
-##### Will be deploying this application once I have solved error handling
+##### Actor Grapher is a visualization tool that displays an actor/director’s Rotten Tomatoes ratings for each of his/her movies. The movies are presented graphically, sorted by the release date.  
+##### The application will be deployed once I have resolved the error handling requirements. 
 
-Currently working on:
-* Proper error handling, including flash messages upon an error
+Features and changes in progress:
+* Error handling functionalities, including error messages
 * Removing tooltips from the line of best fit
-* Ability to click on any element and be taken to it's associated link
 * Scaling the graph to fit the screen height-wise
-* Adding another mode where the trend can be viewed for films in a given franchise (ie Marvel or Star Wars).
+* A mode for users to view trends in a movie franchise’s ratings (e.g. Star Wars and Marvel)
+* User can click on any movie and be taken to it's associated web page
