@@ -7,13 +7,13 @@ window.setInterval(
     }, 2000);
 
 
-$( function() {
+$(() => {
     $( "#actorName" ).autocomplete({
         source: actor_list
     });
 });
 
-function getRandomActor(){
-    var randomIndex = Math.floor(Math.random()*actor_list.length);
+const getRandomActor = () => {
+    let randomIndex = Math.floor(Math.random() * actor_list.length);
     return actor_list[randomIndex];
-}
+};

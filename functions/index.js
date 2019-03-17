@@ -2,16 +2,16 @@ const request = require('request');
 const cheerio = require('cheerio');
 const regression = require('regression');
 const Promise = require('promise');
-var funcObj = {};
+let funcObj = {};
 
-function removeDashes(name, i) {
+const removeDashes = (name, i) => {
     name[i] = name[i].toLowerCase();
     if (name[i].includes("-")) {
         name[i].replace("-", "");
     }
-}
+};
 
-funcObj.getUrl = function (name) {
+funcObj.getUrl = name => {
     for (let i = 0; i < name.length; i++) {
         removeDashes(name, i);
     }
@@ -33,28 +33,28 @@ funcObj.getUrl = function (name) {
     return [actorUrl1, actorUrl2, name];
 };
 
-funcObj.getWebData = function (urlArr, req, res) {
-    var url = urlArr[0];
-    var name = urlArr[2];
+funcObj.getWebData = (urlArr, req, res) => {
+    let url = urlArr[0];
+    let name = urlArr[2];
     // scrape the first url
     webScrape(url, name, urlArr, req, res);
 };
 
-function webScrape(url, name, urlArr, req, res) {
-    var data = [];
+const webScrape = (url, name, urlArr, req, res) => {
+    let data = [];
     request(url, function (error, response, html) {
         // First we'll check to make sure no errors occurred when making the request
         if (!error) {
             // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality
-            var $ = cheerio.load(html);
+            const $ = cheerio.load(html);
             // Finally, we'll define the variables we're going to capture
-            var actorName = $('.celeb_name').children().text();
+            const actorName = $('.celeb_name').children().text();
 
             data = cheerioMethod($, data);
 
             // if data is not empty
             if (data.length > 0) {
-                var linearData = getLinearRegression(data);
+                const linearData = getLinearRegression(data);
                 return res.render('graph', {actorName: actorName, dataArr: data, linearData: linearData});
             }
             else {
@@ -78,48 +78,47 @@ function webScrape(url, name, urlArr, req, res) {
             webScrape(urlArr[1], name, urlArr, req, res);
         }
     });
-}
+};
 
-function createMovieObj(searchData, $, data) {
+const createMovieObj = (searchData, $, data) => {
     searchData.each(function (i, elem) {
-        var movieObj = {};
-        var score = $(this).children("td").children(".tMeterIcon").children(".tMeterScore").text();
-        if (score && score !== "No Score Yet") {
-            movieObj.y = Number(score.slice(0, -1));
-            movieObj.title = $(this).children("td").children("a").text();
+        let movieObj = {};
+        const score = $(this).attr("data-rating");
+        const hasRating = !($(this).find(".tMeterIcon").hasClass('noRating'));
+        if (score && hasRating) {
+            movieObj.y = Number(score);
+            movieObj.title = $(this).attr("data-title");
             movieObj.link = "http://www.rottentomatoes.com" + $(this).children("td").children("a").attr('href');
-            movieObj.year = $(this).children().eq(-1).text();
+            movieObj.year = $(this).children().eq(-1).text().trim();
             data.push(movieObj);
         }
     });
-}
+};
 
-function cheerioMethod($, data) {
-    $('#filmographyTbl').filter(function () {
-        // Let's store the data we filter into a variable so we can easily see what's going on.
-        var searchData = $(this).children("tbody").children();
-        // Go through each film and collect data
-        createMovieObj(searchData, $, data);
-        // Reverse data so it is in chronological order
-        data = data.reverse();
-        // Add film # to the data
-        for (var i = 0; i < data.length; i++) {
-            data[i].x = i + 1;
-        }
-    });
+const cheerioMethod = ($, data) => {
+    const searchData = $('#filmography tbody').children();
+    // Let's store the data we filter into a variable so we can easily see what's going on.
+    // Go through each film and collect data
+    createMovieObj(searchData, $, data);
+    // Reverse data so it is in chronological order
+    data = data.reverse();
+    // Add film # to the data
+    for (let i = 0; i < data.length; i++) {
+        data[i].x = i + 1;
+    };
 
     return data;
-}
+};
 
-function getLinearRegression(data) {
-    var resultArr = [];
+const getLinearRegression = data => {
+    let resultArr = [];
     data.forEach(function (elem) {
         resultArr.push([elem.x, elem.y]);
     });
-    var result = regression.linear(resultArr);
+    let result = regression.linear(resultArr);
     // min/max decimation for performance improvement
     result = [result.points[0], result.points[result.points.length - 1]];
     return result;
-}
+};
 
 module.exports = funcObj;
