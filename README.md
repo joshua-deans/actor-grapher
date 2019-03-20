@@ -5,7 +5,8 @@ Application: http://actor-grapher-actor-grapher.193b.starter-ca-central-1.opensh
 
 ---
 
-##### Actor Grapher is a visualization tool that displays an actor/director’s Rotten Tomatoes ratings for each of his/her movies. The movies are presented graphically and sorted by movie number.  
+##### Actor Grapher is a visualization tool that displays an actor/director’s Rotten Tomatoes ratings for each of his/her movies. The visualization of the actor/director's movie rating overtime is accomplished with a scatter plot sorted by movie number. 
+
 ##### The application will be deployed once I have resolved the error handling requirements. 
 
 Changes in progress:
