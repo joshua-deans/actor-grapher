@@ -48,10 +48,9 @@ const webScrape = (url, name, urlArr, req, res) => {
             // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality
             const $ = cheerio.load(html);
             // Finally, we'll define the variables we're going to capture
-            const actorName = $('.celeb_name').children().text();
+            const actorName = $('.celebrity-bio__name-wrap').children().text();
 
             data = cheerioMethod($, data);
-
             // if data is not empty
             if (data.length > 0) {
                 const linearData = getLinearRegression(data);
@@ -96,7 +95,8 @@ const createMovieObj = (searchData, $, data) => {
 };
 
 const cheerioMethod = ($, data) => {
-    const searchData = $('#filmography tbody').children();
+    const searchData = $('.filmography__table tbody').children();
+    console.log(searchData)
     // Let's store the data we filter into a variable so we can easily see what's going on.
     // Go through each film and collect data
     createMovieObj(searchData, $, data);
