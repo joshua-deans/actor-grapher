@@ -1,5 +1,5 @@
 ## Actor Grapher
-Application: http://actor-grapher-actor-grapher.193b.starter-ca-central-1.openshiftapps.com/
+Application: http://bit.ly/actor_grapher
 
 #### Actor Grapher is the Node.js web version of my previous Python tkinter application.
 
