@@ -83,7 +83,7 @@ const createMovieObj = (searchData, $, data) => {
     searchData.each(function (i, elem) {
         let movieObj = {};
         const score = $(this).attr("data-rating");
-        const hasRating = !($(this).find(".tMeterIcon").hasClass('noRating'));
+        const hasRating = !($(this).find("span").hasClass('filmography__no-rating'));
         if (score && hasRating) {
             movieObj.y = Number(score);
             movieObj.title = $(this).attr("data-title");
