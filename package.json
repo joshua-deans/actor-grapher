@@ -28,7 +28,7 @@
     "request-promise": "^4.2.2",
     "sync-request": "^6.0.0",
     "then-request": "^6.0.0",
-    "urllib": "^2.26.0"
+    "urllib": "^2.38.1"
   },
   "main": "app.js"
 }
